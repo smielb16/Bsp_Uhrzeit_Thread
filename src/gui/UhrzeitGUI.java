@@ -6,9 +6,13 @@
 package gui;
 
 import bl.Timezone;
+import java.awt.Color;
+import java.awt.Font;
 import java.awt.GridLayout;
 import java.time.LocalTime;
+import javax.swing.JLabel;
 import javax.swing.JOptionPane;
+import javax.swing.SwingConstants;
 
 /**
  *
@@ -21,10 +25,33 @@ public class UhrzeitGUI extends javax.swing.JFrame {
      */
     public UhrzeitGUI() {
         initComponents();
-        this.setSize(800, 400);
-        this.setLayout(new GridLayout(3, 1, 3, 3));
-        
+        this.setSize(700, 400);
+        this.setLayout(new GridLayout(3, 2, 3, 3));
+        init();
+    }
+
+    public void init() {
         LocalTime now = LocalTime.now();
+        JLabel localLabel = new JLabel();
+        localLabel.setHorizontalAlignment(SwingConstants.CENTER);
+        localLabel.setFont(new Font("", Font.BOLD, 18));
+        localLabel.setForeground(Color.WHITE);
+        localLabel.setBackground(Color.BLACK);
+        localLabel.setOpaque(true);
+
+        JLabel region1Label = new JLabel();
+        region1Label.setHorizontalAlignment(SwingConstants.CENTER);
+        region1Label.setFont(new Font("", Font.BOLD, 18));
+        region1Label.setForeground(Color.WHITE);
+        region1Label.setBackground(Color.BLACK);
+        region1Label.setOpaque(true);
+
+        JLabel region2Label = new JLabel();
+        region2Label.setHorizontalAlignment(SwingConstants.CENTER);
+        region2Label.setFont(new Font("", Font.BOLD, 18));
+        region2Label.setForeground(Color.WHITE);
+        region2Label.setBackground(Color.BLACK);
+        region2Label.setOpaque(true);
 
         Timezone tzLocal = new Timezone(now);
 
@@ -34,7 +61,7 @@ public class UhrzeitGUI extends javax.swing.JFrame {
                 .parseLong(JOptionPane
                         .showInputDialog("Bitte Zeitverschiebung in Stunden für die erste zusätzliche Zeitzone angeben: "));
         Timezone tzDistant1 = new Timezone(now.plusHours(verschiebung1));
-        
+
         String region2 = JOptionPane
                 .showInputDialog("Bitte Region für die zweite zusätzliche Zeitzone angeben: ");
         long verschiebung2 = Long
@@ -46,8 +73,15 @@ public class UhrzeitGUI extends javax.swing.JFrame {
         new Thread(tzDistant1).start();
         new Thread(tzDistant2).start();
 
+        localLabel.setText("Lokale Zeitzone");
+        region1Label.setText(region1);
+        region2Label.setText(region2);
+
+        this.add(localLabel);
         this.add(tzLocal);
+        this.add(region1Label);
         this.add(tzDistant1);
+        this.add(region2Label);
         this.add(tzDistant2);
     }
 
@@ -61,7 +95,17 @@ public class UhrzeitGUI extends javax.swing.JFrame {
     private void initComponents() {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-        getContentPane().setLayout(new java.awt.GridLayout(1, 2));
+
+        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
+        getContentPane().setLayout(layout);
+        layout.setHorizontalGroup(
+            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 453, Short.MAX_VALUE)
+        );
+        layout.setVerticalGroup(
+            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 257, Short.MAX_VALUE)
+        );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents

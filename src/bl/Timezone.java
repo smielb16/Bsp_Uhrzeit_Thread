@@ -5,6 +5,7 @@
  */
 package bl;
 
+import java.awt.Color;
 import java.awt.GridLayout;
 import java.time.LocalTime;
 import java.util.ArrayList;
@@ -22,6 +23,8 @@ public class Timezone extends JPanel implements Runnable{
     public Timezone(LocalTime time){
         this.time = time;
         this.setLayout(new GridLayout(1,8,3,3));
+        //this.setBackground(Color.BLACK);
+        
         for(int i = 0; i < 8; i++){
             DigitLabel label = new DigitLabel();
             this.add(label);
