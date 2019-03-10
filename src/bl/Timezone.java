@@ -32,9 +32,8 @@ public class Timezone extends JPanel implements Runnable{
     @Override
     public void run() {
         while(true){
-            time = LocalTime.now();
+            time = time.plusSeconds(1);
             draw();
-            System.out.println(time.getSecond()+"");
             try{
                 Thread.sleep(1000);
             }

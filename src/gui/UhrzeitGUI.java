@@ -23,22 +23,24 @@ public class UhrzeitGUI extends javax.swing.JFrame {
         initComponents();
         this.setSize(800, 400);
         this.setLayout(new GridLayout(3, 1, 3, 3));
+        
+        LocalTime now = LocalTime.now();
 
-        Timezone tzLocal = new Timezone(LocalTime.now());
+        Timezone tzLocal = new Timezone(now);
 
         String region1 = JOptionPane
                 .showInputDialog("Bitte Region für die erste zusätzliche Zeitzone angeben: ");
-        int verschiebung1 = Integer
-                .parseInt(JOptionPane
+        long verschiebung1 = Long
+                .parseLong(JOptionPane
                         .showInputDialog("Bitte Zeitverschiebung in Stunden für die erste zusätzliche Zeitzone angeben: "));
-        Timezone tzDistant1 = new Timezone(LocalTime.now().plusHours(verschiebung1));
+        Timezone tzDistant1 = new Timezone(now.plusHours(verschiebung1));
         
         String region2 = JOptionPane
                 .showInputDialog("Bitte Region für die zweite zusätzliche Zeitzone angeben: ");
-        int verschiebung2 = Integer
-                .parseInt(JOptionPane
+        long verschiebung2 = Long
+                .parseLong(JOptionPane
                         .showInputDialog("Bitte Zeitverschiebung in Stunden für die zweite zusätzliche Zeitzone angeben: "));
-        Timezone tzDistant2 = new Timezone(LocalTime.now().plusHours(verschiebung2));
+        Timezone tzDistant2 = new Timezone(now.plusHours(verschiebung2));
 
         new Thread(tzLocal).start();
         new Thread(tzDistant1).start();

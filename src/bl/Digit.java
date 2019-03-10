@@ -24,7 +24,8 @@ public enum Digit {
     private ImageIcon icon;
 
     private Digit(String path){
-        icon = new ImageIcon(path);
+        icon = new ImageIcon(new ImageIcon(path).getImage()
+                .getScaledInstance(40, 40, Image.SCALE_SMOOTH));
     }
     
     public ImageIcon getIcon(){
