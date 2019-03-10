@@ -8,6 +8,7 @@ package gui;
 import bl.Timezone;
 import java.awt.GridLayout;
 import java.time.LocalTime;
+import javax.swing.JOptionPane;
 
 /**
  *
@@ -15,14 +16,37 @@ import java.time.LocalTime;
  */
 public class UhrzeitGUI extends javax.swing.JFrame {
 
-    Timezone tzLocal = new Timezone(LocalTime.now());
-    
     /**
      * Creates new form UhrzeitGUI
      */
     public UhrzeitGUI() {
         initComponents();
-        this.setLayout(new GridLayout(3, 3, 3, 3));
+        this.setSize(800, 400);
+        this.setLayout(new GridLayout(3, 1, 3, 3));
+
+        Timezone tzLocal = new Timezone(LocalTime.now());
+
+        String region1 = JOptionPane
+                .showInputDialog("Bitte Region für die erste zusätzliche Zeitzone angeben: ");
+        int verschiebung1 = Integer
+                .parseInt(JOptionPane
+                        .showInputDialog("Bitte Zeitverschiebung in Stunden für die erste zusätzliche Zeitzone angeben: "));
+        Timezone tzDistant1 = new Timezone(LocalTime.now().plusHours(verschiebung1));
+        
+        String region2 = JOptionPane
+                .showInputDialog("Bitte Region für die zweite zusätzliche Zeitzone angeben: ");
+        int verschiebung2 = Integer
+                .parseInt(JOptionPane
+                        .showInputDialog("Bitte Zeitverschiebung in Stunden für die zweite zusätzliche Zeitzone angeben: "));
+        Timezone tzDistant2 = new Timezone(LocalTime.now().plusHours(verschiebung2));
+
+        new Thread(tzLocal).start();
+        new Thread(tzDistant1).start();
+        new Thread(tzDistant2).start();
+
+        this.add(tzLocal);
+        this.add(tzDistant1);
+        this.add(tzDistant2);
     }
 
     /**
@@ -34,43 +58,8 @@ public class UhrzeitGUI extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jPanel1 = new javax.swing.JPanel();
-        jLabel1 = new javax.swing.JLabel();
-        jLabel2 = new javax.swing.JLabel();
-        jLabel3 = new javax.swing.JLabel();
-        jPanel2 = new javax.swing.JPanel();
-
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         getContentPane().setLayout(new java.awt.GridLayout(1, 2));
-
-        jPanel1.setBackground(new java.awt.Color(0, 0, 0));
-        jPanel1.setLayout(new java.awt.GridLayout(3, 0));
-
-        jLabel1.setText("jLabel1");
-        jPanel1.add(jLabel1);
-
-        jLabel2.setText("jLabel2");
-        jPanel1.add(jLabel2);
-
-        jLabel3.setText("jLabel3");
-        jPanel1.add(jLabel3);
-
-        getContentPane().add(jPanel1);
-
-        jPanel2.setBackground(new java.awt.Color(0, 0, 0));
-
-        javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
-        jPanel2.setLayout(jPanel2Layout);
-        jPanel2Layout.setHorizontalGroup(
-            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 226, Short.MAX_VALUE)
-        );
-        jPanel2Layout.setVerticalGroup(
-            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 257, Short.MAX_VALUE)
-        );
-
-        getContentPane().add(jPanel2);
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
@@ -111,10 +100,5 @@ public class UhrzeitGUI extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JLabel jLabel1;
-    private javax.swing.JLabel jLabel2;
-    private javax.swing.JLabel jLabel3;
-    private javax.swing.JPanel jPanel1;
-    private javax.swing.JPanel jPanel2;
     // End of variables declaration//GEN-END:variables
 }
