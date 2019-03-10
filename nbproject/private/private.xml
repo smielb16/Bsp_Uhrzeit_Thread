@@ -1,8 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project-private xmlns="http://www.netbeans.org/ns/project-private/1">
+    <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/C:/Users/elisc/Documents/NetBeansProjects/Bsp_Uhrzeit_Thread/src/gui/UhrzeitGUI.java</file>
+            <file>file:/D:/Bsp_Uhrzeit_Thread/src/bl/DigitLabel.java</file>
+            <file>file:/D:/Bsp_Uhrzeit_Thread/src/gui/UhrzeitGUI.java</file>
+            <file>file:/D:/Bsp_Uhrzeit_Thread/src/bl/Digit.java</file>
+            <file>file:/D:/Bsp_Uhrzeit_Thread/src/bl/Timezone.java</file>
         </group>
     </open-files>
 </project-private>

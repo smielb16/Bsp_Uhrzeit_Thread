@@ -5,17 +5,24 @@
  */
 package gui;
 
+import bl.Timezone;
+import java.awt.GridLayout;
+import java.time.LocalTime;
+
 /**
  *
  * @author elisc
  */
 public class UhrzeitGUI extends javax.swing.JFrame {
 
+    Timezone tzLocal = new Timezone(LocalTime.now());
+    
     /**
      * Creates new form UhrzeitGUI
      */
     public UhrzeitGUI() {
         initComponents();
+        this.setLayout(new GridLayout(3, 3, 3, 3));
     }
 
     /**
