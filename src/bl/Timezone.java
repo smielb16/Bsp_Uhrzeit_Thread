@@ -45,6 +45,10 @@ public class Timezone extends JPanel implements Runnable{
             }
         }
     }
+    
+    public LocalTime getTime(){
+        return time;
+    }
 
     private void draw() {
         useDigit(time.getHour()/10, 0);
